@@ -91,7 +91,7 @@ func TestGetUserAPI(t *testing.T) {
 		tc.buildStubs(store)
 
 		//start test server and send requests
-		server := NewServer(store)
+		server := newTestServer(t, store)
 		recorder := httptest.NewRecorder()
 
 		url := fmt.Sprintf("/accounts/%d", tc.accountID)
@@ -106,20 +106,18 @@ func TestGetUserAPI(t *testing.T) {
 
 func randomUser() db.User {
 	return db.User{
-		ID: util.RandomInt(1, 1000),
-		Owner: util.RandomOwner(),
-		Balance: util.RandomMoney(),
-		Currency: util.RandomCurrency(),
+		Username: util.RandomString(6),
+		FullName: util.RandomOwner(),
+		Email: util.RandomEmail(),
 	}
-
 }
 
-func requireBodyMatchUser(t *testing.T, body *bytes.Buffer, account db.Account) {
+func requireBodyMatchUser(t *testing.T, body *bytes.Buffer, account db.User) {
 	data, err := io.ReadAll(body)
 	require.NoError(t, err)
 
-	var getAccount db.Account
-	err = json.Unmarshal(data, &getAccount)
+	var getUser db.User
+	err = json.Unmarshal(data, &getUser)
 	require.NoError(t, err)
-	require.Equal(t,account, getAccount)
+	require.Equal(t, account, getUser)
 }

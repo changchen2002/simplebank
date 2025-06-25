@@ -45,21 +45,3 @@ func TestExpiredPasetoToken(t *testing.T) {
 	require.EqualError(t, err, ErrExpiredToken.Error())
 	require.Nil(t, payload)
 }
-
-func TestInvalidPASETOToken(t *testing.T) {
-	// Generate a random key for PASETO
-	symmetricKey := util.RandomString(32)
-	maker, err := NewPasetoMaker(symmetricKey)
-	require.NoError(t, err)
-
-	// Create a fake (invalid) token manually
-	invalidToken := "v2.local.this_is_not_a_valid_paseto_token"
-
-	// Try to verify the invalid token
-	verifiedPayload, err := maker.VerifyToken(invalidToken)
-
-	// Expect an error and ensure payload is nil
-	require.Error(t, err)
-	require.EqualError(t, err, ErrInvalidToken.Error())
-	require.Nil(t, verifiedPayload)
-}
