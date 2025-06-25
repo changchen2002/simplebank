@@ -58,8 +58,8 @@ func (q *Queries) GetTransfer(ctx context.Context, id int64) (Transfer, error) {
 
 const listTransfers = `-- name: ListTransfers :many
 SELECT id, from_account_id, to_account_id, amount, created_at FROM transfers
-WHERE
-    from_account_id = $1 OR 
+WHERE 
+    from_account_id = $1 OR
     to_account_id = $2
 ORDER BY id
 LIMIT $3

@@ -13,8 +13,8 @@ WHERE id = $1 LIMIT 1;
 
 -- name: ListTransfers :many
 SELECT * FROM transfers
-WHERE
-    from_account_id = $1 OR 
+WHERE 
+    from_account_id = $1 OR
     to_account_id = $2
 ORDER BY id
 LIMIT $3
