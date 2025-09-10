@@ -161,5 +161,4 @@ MIT. See [LICENSE](LICENSE).
 
 ## Acknowledgments
 
-- Inspired by [Tech School](https://github.com/techschool)
 - Uses [SQLC](https://sqlc.dev/) and [Gin](https://gin-gonic.com/)
