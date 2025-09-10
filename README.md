@@ -1,4 +1,4 @@
-# Simple Bank API
+# 🏦 Backedn Banking System API
 
 A modern, secure, and extensible banking API built with Go. Features robust authentication, account management, and money transfer capabilities, following best practices for backend development.
 
@@ -8,7 +8,7 @@ A modern, secure, and extensible banking API built with Go. Features robust auth
 
 ---
 
-## Features
+## 🚀 Features
 
 - **User Management**: Secure registration, login, and role-based access
 - **Account Operations**: Create, view, and list bank accounts
@@ -19,7 +19,7 @@ A modern, secure, and extensible banking API built with Go. Features robust auth
 - **Comprehensive Testing**: Unit and integration tests
 - **Docker Support**: Easy local development
 
-## Tech Stack
+## 👩‍💻 Tech Stack
 
 - **Language**: Go 1.23+
 - **Framework**: Gin (HTTP API)
@@ -31,14 +31,14 @@ A modern, secure, and extensible banking API built with Go. Features robust auth
 - **Testing**: Go test, Mockgen
 - **Migrations**: golang-migrate
 
-## Prerequisites
+## 📦 Prerequisites
 
 - Go 1.23+
 - PostgreSQL 12+
 - Docker (optional)
 - Make
 
-## Quick Start
+## ✨ Quick Start
 
 1. **Clone the Repository**
 	```bash
@@ -64,7 +64,7 @@ A modern, secure, and extensible banking API built with Go. Features robust auth
 	```
 	The API runs at `http://localhost:8080`
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 simplebank/
@@ -82,7 +82,7 @@ simplebank/
 ├── Makefile     # Build/dev commands
 ```
 
-## Configuration
+## ⚙️ Configuration
 
 Create an `app.env` file:
 ```env
@@ -93,7 +93,7 @@ TOKEN_SYMMETRIC_KEY=your-secret-key-here
 ACCESS_TOKEN_DURATION=15m
 ```
 
-## API Endpoints (REST)
+## 🌐 API Endpoints (REST)
 
 - `POST   /users`           - Register user
 - `POST   /users/login`     - User login
@@ -103,7 +103,7 @@ ACCESS_TOKEN_DURATION=15m
 - `POST   /transfers`       - Create transfer
 - `GET    /transfers`       - List transfers
 
-## Testing
+## 🧪 Testing
 
 Run all tests:
 ```bash
@@ -118,7 +118,7 @@ Generate mocks:
 make mock
 ```
 
-## Development Commands
+## 🛠 Development Commands
 
 | Command            | Description                  |
 |--------------------|------------------------------|
@@ -132,7 +132,7 @@ make mock
 | make server        | Start server                 |
 | make mock          | Generate mocks               |
 
-## Security
+## 🔒 Security
 
 - **Password Hashing**: bcrypt
 - **JWT/PASETO**: Secure token auth
@@ -140,14 +140,14 @@ make mock
 - **SQL Injection Protection**: Parameterized queries
 - **CORS**: Configurable
 
-## Database Schema
+## 🗄 Database Schema
 
 - `users`      - User accounts
 - `accounts`   - Bank accounts
 - `transfers`  - Money transfers
 - `entries`    - Transaction entries
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repo
 2. Create a branch (`git checkout -b feature/xyz`)
@@ -155,10 +155,10 @@ make mock
 4. Push (`git push origin feature/xyz`)
 5. Open a PR
 
-## License
+## 📄 License
 
 MIT. See [LICENSE](LICENSE).
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Uses [SQLC](https://sqlc.dev/) and [Gin](https://gin-gonic.com/)
