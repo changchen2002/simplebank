@@ -10,13 +10,13 @@ import (
 )
 
 func createRandomTransfer(t *testing.T, account1, account2 Account) Transfer {
-	arg := CreateTransferParams {
-		FromAccountID:	account1.ID, 
-		ToAccountID: 	account2.ID,
-  		Amount: 		util.RandomMoney(),
+	arg := CreateTransferParams{
+		FromAccountID: account1.ID,
+		ToAccountID:   account2.ID,
+		Amount:        util.RandomMoney(),
 	}
 
-	transfer, err := testQueries.CreateTransfer(context.Background(), arg)
+	transfer, err := testStore.CreateTransfer(context.Background(), arg)
 	require.NoError(t, err)
 	require.NotEmpty(t, transfer)
 
@@ -30,7 +30,6 @@ func createRandomTransfer(t *testing.T, account1, account2 Account) Transfer {
 	return transfer
 }
 
-
 func TestCreateTransfer(t *testing.T) {
 	account1 := createRandomAccount(t)
 	account2 := createRandomAccount(t)
@@ -41,7 +40,8 @@ func TestGetTransfer(t *testing.T) {
 	account1 := createRandomAccount(t)
 	account2 := createRandomAccount(t)
 	transfer1 := createRandomTransfer(t, account1, account2)
-	transfer2, err := testQueries.GetTransfer(context.Background(), transfer1.ID)
+
+	transfer2, err := testStore.GetTransfer(context.Background(), transfer1.ID)
 	require.NoError(t, err)
 	require.NotEmpty(t, transfer2)
 
@@ -52,23 +52,23 @@ func TestGetTransfer(t *testing.T) {
 	require.WithinDuration(t, transfer1.CreatedAt, transfer2.CreatedAt, time.Second)
 }
 
-
-func TestListTransfers(t *testing.T) {
+func TestListTransfer(t *testing.T) {
 	account1 := createRandomAccount(t)
 	account2 := createRandomAccount(t)
-	
-	for i := 0; i < 10; i++ {
+
+	for i := 0; i < 5; i++ {
 		createRandomTransfer(t, account1, account2)
+		createRandomTransfer(t, account2, account1)
 	}
 
-	arg := ListTransfersParams {
-		FromAccountID: 	account1.ID,
-		ToAccountID: 	account1.ID,
-		Limit:			5,
-		Offset: 		5,
+	arg := ListTransfersParams{
+		FromAccountID: account1.ID,
+		ToAccountID:   account1.ID,
+		Limit:         5,
+		Offset:        5,
 	}
 
-	transfers, err := testQueries.ListTransfers(context.Background(), arg)
+	transfers, err := testStore.ListTransfers(context.Background(), arg)
 	require.NoError(t, err)
 	require.Len(t, transfers, 5)
 
