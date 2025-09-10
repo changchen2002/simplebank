@@ -179,14 +179,8 @@ func TestCreateUserAPI(t *testing.T) {
 			store := mockdb.NewMockStore(ctrl)
 			tc.buildStubs(store)
 
-<<<<<<< HEAD
 			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
-=======
-		//start test server and send requests
-		server := newTestServer(t, store)
-		recorder := httptest.NewRecorder()
->>>>>>> e8e88152d1b596441afed2a98713b1d5e55f3b68
 
 			// Marshal body data to JSON
 			data, err := json.Marshal(tc.body)
@@ -202,7 +196,6 @@ func TestCreateUserAPI(t *testing.T) {
 	}
 }
 
-<<<<<<< HEAD
 func TestLoginUserAPI(t *testing.T) {
 	user, password := randomUser(t)
 
@@ -350,22 +343,3 @@ func requireBodyMatchUser(t *testing.T, body *bytes.Buffer, user db.User) {
 	require.Equal(t, user.Email, gotUser.Email)
 	require.Empty(t, gotUser.HashedPassword)
 }
-=======
-func randomUser() db.User {
-	return db.User{
-		Username: util.RandomString(6),
-		FullName: util.RandomOwner(),
-		Email: util.RandomEmail(),
-	}
-}
-
-func requireBodyMatchUser(t *testing.T, body *bytes.Buffer, account db.User) {
-	data, err := io.ReadAll(body)
-	require.NoError(t, err)
-
-	var getUser db.User
-	err = json.Unmarshal(data, &getUser)
-	require.NoError(t, err)
-	require.Equal(t, account, getUser)
-}
->>>>>>> e8e88152d1b596441afed2a98713b1d5e55f3b68

@@ -125,11 +125,8 @@ type ListAccountsParams struct {
 }
 
 func (q *Queries) ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Account, error) {
-<<<<<<< HEAD
 	rows, err := q.db.Query(ctx, listAccounts, arg.Owner, arg.Limit, arg.Offset)
-=======
-	rows, err := q.db.QueryContext(ctx, listAccounts, arg.Owner, arg.Limit, arg.Offset)
->>>>>>> e8e88152d1b596441afed2a98713b1d5e55f3b68
+
 	if err != nil {
 		return nil, err
 	}
