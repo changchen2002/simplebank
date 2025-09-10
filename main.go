@@ -59,6 +59,7 @@ func main() {
 
 	runDBMigration(config.MigrationURL, config.DBSource)
 
+
 	store := db.NewStore(connPool)
 
 	redisOpt := asynq.RedisClientOpt{
